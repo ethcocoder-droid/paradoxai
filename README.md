@@ -24,7 +24,7 @@ python main_enhanced.py --repl
 python backend/app.py
 
 # Complete system with UI
-python main.py --backend --ui
+python main_enhanced.py --backend --ui
 
 # Static UI only (port 5500)
 python -m http.server 5500
