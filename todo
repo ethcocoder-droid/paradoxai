@@ -1,0 +1,147 @@
+# Quantum-Like God AI — TODO.md
+
+## Status Legend
+- [ ] Not started
+- [~] In progress
+- [x] Completed
+
+---
+
+## Chunk 0 — Project Skeleton (Starter)
+- [x] Create project root folder `QuantumGodAI/`
+- [x] Create directories: `modules/`, `data/`, `ui/`, `backend/`, `tests/`
+- [x] Create empty files: README.md, requirements.txt, main.py, TODO.md
+- [x] Create data files: data/concepts.json, data/entanglements.json
+- [ ] Verify folder structure matches spec
+- **Test:** Ensure all files exist and folders are correct
+
+---
+
+## Chunk 1 — Perception Module
+- [ ] modules/perception/input_encoder.py
+- Tasks:
+  - Convert text/images/concepts to multi-dimensional vectors
+  - Normalize vectors
+  - Initialize superposition-ready states
+  - Connect output to knowledge module
+- **Test:** Encode sample input → verify vector output
+
+---
+
+## Chunk 2 — Knowledge Module
+- [ ] modules/knowledge/hyper_matrix.py
+- [ ] modules/knowledge/entanglement_manager.py
+- Tasks:
+  - Store concepts in multi-dimensional matrices
+  - Manage entanglement between concepts
+  - Update superpositions dynamically
+  - Integrate developer input
+- **Test:** Initialize hyper-matrix → check entanglement updates
+
+---
+
+## Chunk 3 — Reasoning Module
+- [ ] modules/reasoning/pathological_logic.py
+- [ ] modules/reasoning/interference_engine.py
+- Tasks:
+  - Multi-perspective pathological reasoning
+  - Update superpositions after reasoning
+  - Output results to knowledge module
+- **Test:** Run reasoning on sample vectors → check superposition updates
+
+---
+
+## Chunk 4 — Curiosity Module
+- [ ] modules/curiosity/question_generator.py
+- Tasks:
+  - Detect uncertainties in reasoning/knowledge
+  - Generate internal/external questions
+  - Connect outputs to reasoning & developer-learning modules
+- **Test:** Generate sample questions → verify correct logic
+
+---
+
+## Chunk 5 — Self-Awareness Module
+- [ ] modules/self_awareness/ai_emotions.py
+- [ ] modules/self_awareness/attention_manager.py
+- Tasks:
+  - Implement AI-emotions: Inceptio, Equilibria, Reflexion, Fluxion
+  - Regulate self-attention, balance curiosity vs correctness
+  - Monitor reasoning, knowledge, and curiosity
+- **Test:** Simulate AI-emotion updates → verify balance
+
+---
+
+## Chunk 6 — Output Module
+- [ ] modules/output/probabilistic_collapse.py
+- Tasks:
+  - Collapse superpositions probabilistically
+  - Factor AI-emotions into output
+  - Generate user-adaptive responses
+- **Test:** Collapse sample superposition → verify output
+
+---
+
+## Chunk 7 — Learning From Developer
+- [ ] modules/learning_from_developer/developer_input_handler.py
+- [ ] modules/learning_from_developer/hyper_matrix_updater.py
+- [ ] modules/learning_from_developer/curiosity_feedback.py
+- Tasks:
+  - Encode developer input
+  - Update hyper-matrix and reasoning modules
+  - Generate clarification questions
+  - Integrate with AI-emotions
+- **Test:** Feed developer input → verify updates
+
+---
+
+## Chunk 8 — Utils Module
+- [ ] modules/utils/vector_operations.py
+- [ ] modules/utils/matrix_utils.py
+- Tasks:
+  - Vector math and matrix manipulations
+  - Error handling and missing value checks
+- **Test:** Run sample operations → verify results
+
+---
+
+## Chunk 9 — UI Module
+- [ ] ui/index.html
+- [ ] ui/style.css
+- [ ] ui/app.js
+- [ ] ui/developer_dashboard.html
+- [ ] ui/dashboard.js
+- Tasks:
+  - User input + AI response display
+  - Developer dashboard: hyper-matrix, entanglement, AI-emotions, curiosity
+  - Connect frontend to backend API
+- **Test:** Open UI → test input/output
+
+---
+
+## Chunk 10 — Backend
+- [ ] backend/app.py
+- Tasks:
+  - API endpoint: user queries → AI response
+  - API endpoint: developer input → knowledge update
+  - Real-time developer dashboard updates
+- **Test:** Start server → verify API responses
+
+---
+
+## Chunk 11 — Tests
+- [ ] Generate unit tests for all modules
+- [ ] Validate hyper-matrix, superposition, entanglement
+- [ ] Validate AI-emotions updates
+- [ ] Validate probabilistic outputs
+- [ ] Handle edge cases and missing values
+- **Test:** Run all tests → verify pass
+
+---
+
+## Chunk 12 — Integration & Main
+- [ ] main.py — integrate all modules
+- Tasks:
+  - End-to-end loop: user_input → perception → knowledge → reasoning → curiosity → self-awareness → output → developer-learning → loop
+  - Debug and optimize hyper-matrix, curiosity balance, AI-emotions
+- **Test:** Run full AI loop → verify complete functionality

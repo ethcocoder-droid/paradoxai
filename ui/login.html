@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Login — Paradox AI</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<header>
+		<h1>Login to Paradox</h1>
+		<nav>
+			<a href="index.html">Home</a>
+			<a href="register.html">Register</a>
+			<a href="developer_dashboard.html">Developer Dashboard</a>
+		</nav>
+	</header>
+	<main>
+		<section class="panel">
+			<label>Username <input id="username"></label>
+			<label>Password <input id="password" type="password"></label>
+			<button id="loginBtn">Login</button>
+			<pre id="loginStatus">Idle</pre>
+		</section>
+	</main>
+	<footer>
+		<span>Status: <span id="status">Idle</span></span>
+	</footer>
+	<script>
+		function getApiBase(){
+			const saved = (localStorage.getItem('qgai_api_base') || '').trim();
+			return saved || 'http://127.0.0.1:8000';
+		}
+		function setStatus(s){ document.getElementById('status').textContent = s; }
+		async function login(){
+			setStatus('Logging in...');
+			const username = document.getElementById('username').value.trim();
+			const password = document.getElementById('password').value;
+			const out = document.getElementById('loginStatus');
+			try{
+				const base = getApiBase();
+				const res = await fetch(base + '/api/auth/login', {
+					method:'POST',
+					headers:{'Content-Type':'application/json'},
+					body: JSON.stringify({ username, password })
+				});
+				const data = await res.json();
+				if(data && data.status==='ok'){
+					localStorage.setItem('qgai_user', username);
+					if(data.token){ localStorage.setItem('qgai_token', data.token); }
+					if(data.role){ localStorage.setItem('qgai_role', data.role); }
+					// Redirect based on role
+					if (data.role === 'developer') {
+						location.href = 'developer_dashboard.html';
+					} else {
+						location.href = 'chat.html';
+					}
+				}
+				out.textContent = JSON.stringify(data, null, 2);
+				setStatus('Done');
+			}catch(e){
+				out.textContent = 'Error: ' + (e.message || e);
+				setStatus('Error');
+			}
+		}
+		document.getElementById('loginBtn').addEventListener('click', login);
+	</script>
+</body>
+</html>
+

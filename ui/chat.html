@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Paradox Chat</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<header>
+		<h1>Paradox Chat</h1>
+		<nav>
+			<a href="index.html">Home</a>
+			<a href="developer_dashboard.html">Developer Dashboard</a>
+			<a href="login.html">Login</a>
+		</nav>
+	</header>
+	<main>
+		<section class="panel">
+			<h2>Chat</h2>
+			<textarea id="userInput" placeholder="Ask something..." rows="5"></textarea>
+			<div class="controls">
+				<label>Temperature <input id="temperature" type="range" min="0" max="1" step="0.01" value="0.7"></label>
+				<select id="tone">
+					<option value="neutral" selected>Neutral</option>
+					<option value="friendly">Friendly</option>
+					<option value="formal">Formal</option>
+				</select>
+				<select id="style">
+					<option value="concise" selected>Concise</option>
+					<option value="detailed">Detailed</option>
+				</select>
+				<label class="pill"><input type="checkbox" id="optInTrain"> Contribute my prompt</label>
+				<button id="sendBtn">Send</button>
+			</div>
+		</section>
+		<section class="panel">
+			<h2>AI Response</h2>
+			<pre id="responseArea">No response yet.</pre>
+		</section>
+	</main>
+	<footer>
+		<span>Status: <span id="status">Idle</span></span>
+	</footer>
+	<script src="app.js"></script>
+	<script>
+		(function(){
+			// Require login
+			const token = localStorage.getItem('qgai_token');
+			if(!token){
+				alert('Please login first.');
+				location.href = 'login.html';
+				return;
+			}
+			document.getElementById('sendBtn').addEventListener('click', window.QGAI.sendQuery);
+		})();
+	</script>
+</body>
+</html>
+

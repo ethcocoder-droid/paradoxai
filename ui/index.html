@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Paradox AI — by Ethco Coders</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<header>
+		<h1>Paradox AI</h1>
+		<nav>
+			<a href="index.html">Home</a>
+			<a href="about.html">About</a>
+			<a href="contact.html">Contact</a>
+			<a href="login.html">Login</a>
+			<a href="register.html">Register</a>
+			<a href="developer_dashboard.html">Developer Dashboard</a>
+		</nav>
+	</header>
+	<main>
+		<section class="hero">
+			<div class="card3d">
+				<h2>Chat with Paradox</h2>
+				<p class="pill">Tech-grade, quantum-inspired reasoning</p>
+				<p><a href="chat.html">Go to Chat</a></p>
+			</div>
+			<div class="card3d">
+				<h2>Teach Mode</h2>
+				<p class="pill">Opt-in user training and developer Q&A</p>
+				<p><a href="developer_dashboard.html">Open Developer Dashboard</a></p>
+			</div>
+		</section>
+		<section class="panel">
+			<h2>About Paradox</h2>
+			<p>Paradox AI (by Ethco Coders) is a quantum-inspired system blending superpositions, entanglements, and curiosity-driven reasoning. It supports developer-guided learning and opt-in user training.</p>
+		</section>
+
+		<section class="panel">
+			<h2>Contact</h2>
+			<p>For inquiries or support, please use the Contact page or reach out via the Developer Dashboard.</p>
+			<p><a href="contact.html">Contact form</a></p>
+		</section>
+
+		<section class="panel">
+			<h2>Latest Blog Posts</h2>
+			<div id="blogFeed">No posts yet.</div>
+			<button id="refreshPosts">Refresh Posts</button>
+		</section>
+	</main>
+	<footer>
+		<span>Status: <span id="status">Idle</span></span>
+	</footer>
+	<script src="app.js"></script>
+	<script>
+		document.getElementById('refreshPosts').addEventListener('click', window.QGAI.loadPosts);
+	</script>
+</body>
+<style>
+</style>
+</html>
+
+

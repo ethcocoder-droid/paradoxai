@@ -1,0 +1,16 @@
+[
+  {
+    "source": "qa:88",
+    "target": "qa:1",
+    "strength": 0.992023968016,
+    "phase": 0.0,
+    "metadata": {}
+  },
+  {
+    "source": "qa:1",
+    "target": "qa:88",
+    "strength": 0.992023968016,
+    "phase": 0.0,
+    "metadata": {}
+  }
+]

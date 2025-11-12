@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<package xmlns:opf="http://www.idpf.org/2007/opf" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.idpf.org/2007/opf" version="3.0" unique-identifier="id" xml:lang="en">
+  <metadata>
+    <dc:rights>Public domain in the USA.</dc:rights>
+    <dc:identifier id="id">http://www.gutenberg.org/8492</dc:identifier>
+    <dc:creator id="author_0">Robert W. Chambers</dc:creator>
+    <meta property="file-as" refines="#author_0">Chambers, Robert W. (Robert William)</meta>
+    <meta property="role" refines="#author_0" scheme="marc:relators">aut</meta>
+    <dc:title>The King in Yellow</dc:title>
+    <dc:language>en</dc:language>
+    <dc:subject>Short stories, American</dc:subject>
+    <dc:subject>Horror tales, American</dc:subject>
+    <dc:subject>United States -- Social life and customs -- 19th century -- Fiction</dc:subject>
+    <dc:date>2005-07-01</dc:date>
+    <meta property="dcterms:modified">2025-11-04T11:06:06Z</meta>
+    <dc:source>https://www.gutenberg.org/files/8492/8492-h/8492-h.htm</dc:source>
+    <meta property="schema:accessMode">textual</meta>
+    <meta property="schema:accessibilityFeature">readingOrder</meta>
+    <meta property="schema:accessibilityHazard">none</meta>
+    <meta property="schema:accessModeSufficient">textual,visual</meta>
+    <meta property="schema:accessibilitySummary">This publication may not have complete alternative text descriptions.</meta>
+    <meta name="cover" content="item1"/>
+  </metadata>
+  <manifest>
+    <!--Image: 1600 x 2400 size=67916 -->
+    <item href="4182412030139753053_8492-cover.png" id="item1" media-type="image/png" properties="cover-image"/>
+    <item href="pgepub.css" id="item2" media-type="text/css"/>
+    <item href="0.css" id="item3" media-type="text/css"/>
+    <item href="1.css" id="item4" media-type="text/css"/>
+    <!--Chunk: size=196063 Split on div-->
+    <item href="9052817460954608548_8492-h-0.htm.xhtml" id="pg-header" media-type="application/xhtml+xml"/>
+    <!--Chunk: size=239780 Split on h3-->
+    <item href="9052817460954608548_8492-h-1.htm.xhtml" id="item5" media-type="application/xhtml+xml"/>
+    <!--Chunk: size=75133 Split on section-->
+    <item href="9052817460954608548_8492-h-2.htm.xhtml" id="item6" media-type="application/xhtml+xml"/>
+    <!--Chunk: size=19685-->
+    <item href="9052817460954608548_8492-h-3.htm.xhtml" id="pg-footer" media-type="application/xhtml+xml"/>
+    <item href="toc.xhtml" id="ncx" media-type="application/xhtml+xml" properties="nav"/>
+    <item href="toc.ncx" id="ncx2" media-type="application/x-dtbncx+xml"/>
+    <item href="wrap0000.xhtml" id="coverpage-wrapper" media-type="application/xhtml+xml" properties="svg"/>
+  </manifest>
+  <spine toc="ncx2">
+    <itemref idref="coverpage-wrapper"/>
+    <itemref idref="pg-header"/>
+    <itemref idref="item5"/>
+    <itemref idref="item6"/>
+    <itemref idref="pg-footer"/>
+  </spine>
+</package>

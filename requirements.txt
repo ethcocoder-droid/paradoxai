@@ -1,0 +1,25 @@
+# Core dependencies
+numpy>=1.23,<3
+Flask>=2.3,<4
+flask-cors>=4.0,<5
+pytest>=7.0,<9
+
+# Optional dependencies (for enhanced functionality)
+Pillow>=9.0.0  # For image processing in perception module
+
+# Development dependencies (installed automatically with pytest)
+click>=8.0.0
+iniconfig>=1.1.0
+packaging>=20.0
+pluggy>=1.0.0
+Pygments>=2.0.0
+Werkzeug>=2.0.0
+Jinja2>=3.0.0
+MarkupSafe>=2.0.0
+itsdangerous>=2.0.0
+colorama>=0.4.0
+
+cupy-cuda12x; platform_system == "Linux"
+jax>=0.4; platform_system == "Linux"
+jaxlib>=0.4; platform_system == "Linux"
+

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Contact — Paradox AI</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<header>
+		<h1>Contact Paradox AI</h1>
+		<nav>
+			<a href="index.html">Home</a>
+			<a href="about.html">About</a>
+			<a href="developer_dashboard.html">Developer Dashboard</a>
+		</nav>
+	</header>
+	<main>
+		<section class="panel">
+			<h2>Send us a message</h2>
+			<label>Name <input id="contactName" placeholder="Your name"></label>
+			<label>Email <input id="contactEmail" placeholder="you@example.com"></label>
+			<textarea id="contactMessage" placeholder="Your message..." rows="6"></textarea>
+			<button id="sendContact">Send</button>
+			<pre id="contactStatus">Idle</pre>
+		</section>
+	</main>
+	<footer>
+		<span>Status: <span id="status">Idle</span></span>
+	</footer>
+	<script>
+		const statusEl = document.getElementById('status');
+		const API_BASE = (window.localStorage.getItem('qgai_api_base') || '').trim();
+		function setStatus(s){ if(statusEl) statusEl.textContent = s; }
+		async function sendContact(){
+			const name = document.getElementById('contactName').value.trim();
+			const email = document.getElementById('contactEmail').value.trim();
+			const message = document.getElementById('contactMessage').value.trim();
+			const out = document.getElementById('contactStatus');
+			setStatus('Sending...');
+			try{
+				if(!API_BASE) throw new Error('Backend not configured');
+				const res = await fetch(API_BASE + '/api/contacts', {
+					method:'POST',
+					headers:{'Content-Type':'application/json'},
+					body: JSON.stringify({ name, email, message })
+				});
+				const data = await res.json();
+				out.textContent = JSON.stringify(data, null, 2);
+				setStatus('Done');
+			}catch(e){
+				out.textContent = 'Error: ' + (e.message || e);
+				setStatus('Error');
+			}
+		}
+		document.getElementById('sendContact').addEventListener('click', sendContact);
+	</script>
+</body>
+</html>
+
+

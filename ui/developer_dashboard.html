@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Developer Dashboard — Paradox AI (Ethco Coders)</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<header>
+		<h1>Paradox Developer Dashboard</h1>
+		<nav>
+			<a href="index.html">Back to App</a>
+		</nav>
+	</header>
+	<main>
+		<section class="panel">
+			<h2>Session</h2>
+			<div>Role: <span id="roleBadge" class="pill">Unknown</span></div>
+			<button id="logoutBtn">Logout</button>
+		</section>
+		<section class="panel">
+			<h2>Settings</h2>
+			<label>API Base URL <input id="apiBase" placeholder="http://localhost:8000"></label>
+			<button id="saveSettings">Save</button>
+		</section>
+
+		<section class="panel">
+			<h2>Hyper-Matrix Snapshot</h2>
+			<pre id="matrixView">No data yet.</pre>
+			<button id="refreshMatrix">Refresh</button>
+		</section>
+
+		<section class="panel">
+			<h2>AI-Emotions</h2>
+			<div id="emotionsView">No data yet.</div>
+			<button id="refreshEmotions">Refresh</button>
+		</section>
+
+		<section class="panel">
+			<h2>Entanglements</h2>
+			<pre id="entanglementsView">No data yet.</pre>
+			<button id="refreshEntanglements">Refresh</button>
+		</section>
+
+		<section class="panel">
+			<h2>User Management</h2>
+			<div class="controls">
+				<label>Username <input id="userName"></label>
+				<label>Password <input id="userPass" type="password"></label>
+				<button id="registerUser">Register</button>
+				<button id="listUsers">List Users</button>
+			</div>
+			<pre id="usersView">No data yet.</pre>
+		</section>
+
+		<section class="panel">
+			<h2>Contact Management</h2>
+			<div class="controls">
+				<button id="listContacts">List Contacts</button>
+			</div>
+			<pre id="contactsView">No data yet.</pre>
+		</section>
+
+		<section class="panel">
+			<h2>Blog Posts</h2>
+			<div class="controls">
+				<label>Title <input id="postTitle"></label>
+				<label>Content <input id="postContent"></label>
+				<button id="createPost">Create Post</button>
+				<button id="listPosts">List Posts</button>
+			</div>
+			<pre id="postsView">No data yet.</pre>
+		</section>
+
+		<section class="panel">
+			<h2>Training Dataset (Q&A)</h2>
+			<div class="controls">
+				<input id="qaQ" placeholder="Question">
+			</div>
+			<textarea id="qaA" placeholder="Authoritative answer" rows="4"></textarea>
+			<div class="controls">
+				<button id="qaAdd">Add Q&A</button>
+				<button id="qaList">List Q&A</button>
+			</div>
+			<pre id="qaView">No data yet.</pre>
+		</section>
+
+		<section class="panel">
+			<h2>Bulk Upload (CSV or Markdown)</h2>
+			<input type="file" id="trainFile">
+			<button id="uploadTrain">Upload</button>
+			<pre id="uploadView">Idle</pre>
+		</section>
+
+		<section class="panel">
+			<h2>Teach the AI</h2>
+			<div class="controls">
+				<label>Concept ID <input id="teachConcept"></label>
+				<label>Text <input id="teachText"></label>
+				<button id="teachBtn">Teach</button>
+			</div>
+			<pre id="teachView">Idle</pre>
+		</section>
+	</main>
+	<footer>
+		<span>Status: <span id="status">Idle</span></span>
+	</footer>
+	<script src="dashboard.js"></script>
+</body>
+</html>
+
+

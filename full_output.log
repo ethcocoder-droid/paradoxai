@@ -1,0 +1,36 @@
+Using CPU for transformer computation
+Using CPU for transformer computation
+Quantum-Like God AI - Transformer LLM Demo
+============================================================
+This demo shows our custom transformer implementation
+with training, text generation, and quantum-inspired features.
+============================================================
+Demonstrating Transformer Training
+==================================================
+Preparing training data...
+Vocabulary size: 13822
+Model parameters: 7076864
+Created 74669 training samples
+Starting training...
+  Epoch 1/1, Step 100, Loss: 5.5796
+  Epoch 1/1, Step 200, Loss: 4.8534
+  Epoch 1/1, Step 300, Loss: 5.0611
+  Epoch 1/1, Step 400, Loss: 4.8710
+  Epoch 1/1, Step 500, Loss: 5.1286
+  Epoch 1/1, Step 600, Loss: 4.8798
+  Epoch 1/1, Step 700, Loss: 5.0271
+  Epoch 1/1, Step 800, Loss: 5.3695
+  Epoch 1/1, Step 900, Loss: 5.3495
+  Epoch 1/1, Step 1000, Loss: 4.9248
+  Epoch 1/1, Step 1100, Loss: 6.1975
+  Epoch 1/1, Step 1200, Loss: 5.0731
+  Epoch 1/1, Step 1300, Loss: 5.1149
+  Epoch 1/1, Step 1400, Loss: 4.9228
+  Epoch 1/1, Step 1500, Loss: 5.0455
+  Epoch 1/1, Step 1600, Loss: 4.9991
+  Epoch 1/1, Step 1700, Loss: 4.8890
+  Epoch 1/1, Step 1800, Loss: 4.9241
+  Epoch 1/1, Step 1900, Loss: 5.0829
+  Epoch 1/1, Step 2000, Loss: 5.1231
+  Epoch 1/1, Step 2100, Loss: 5.0034
+  Epoch 1/1, Step 2200, Loss: 4.9916

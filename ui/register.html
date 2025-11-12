@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Register — Paradox AI</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<header>
+		<h1>Create Paradox Account</h1>
+		<nav>
+			<a href="index.html">Home</a>
+			<a href="login.html">Login</a>
+			<a href="developer_dashboard.html">Developer Dashboard</a>
+		</nav>
+	</header>
+	<main>
+		<section class="panel">
+			<label>Username <input id="username"></label>
+			<label>Password <input id="password" type="password"></label>
+			<label>Role
+				<select id="role">
+					<option value="user" selected>User</option>
+					<option value="developer">Developer</option>
+				</select>
+			</label>
+			<label>Admin Code (for developer) <input id="admin_code" placeholder="ETHCO_ADMIN"></label>
+			<button id="registerBtn">Create Account</button>
+			<pre id="registerStatus">Idle</pre>
+		</section>
+	</main>
+	<footer>
+		<span>Status: <span id="status">Idle</span></span>
+	</footer>
+	<script>
+		function getApiBase(){
+			const saved = (localStorage.getItem('qgai_api_base') || '').trim();
+			return saved || 'http://127.0.0.1:8000';
+		}
+		function setStatus(s){ document.getElementById('status').textContent = s; }
+		async function register(){
+			setStatus('Registering...');
+			const username = document.getElementById('username').value.trim();
+			const password = document.getElementById('password').value;
+			const role = (document.getElementById('role')?.value || 'user');
+			const admin_code = (document.getElementById('admin_code')?.value || '');
+			const out = document.getElementById('registerStatus');
+			try{
+				const base = getApiBase();
+				const res = await fetch(base + '/api/auth/register', {
+					method:'POST',
+					headers:{'Content-Type':'application/json'},
+					body: JSON.stringify({ username, password, role, admin_code })
+				});
+				const data = await res.json();
+				if(data && data.status==='ok'){
+					if(data.token){ localStorage.setItem('qgai_token', data.token); }
+					if(data.role){ localStorage.setItem('qgai_role', data.role); }
+					localStorage.setItem('qgai_user', username);
+				}
+				out.textContent = JSON.stringify(data, null, 2);
+				setStatus('Done');
+			}catch(e){
+				out.textContent = 'Error: ' + (e.message || e);
+				setStatus('Error');
+			}
+		}
+		document.getElementById('registerBtn').addEventListener('click', register);
+	</script>
+</body>
+</html>
+
