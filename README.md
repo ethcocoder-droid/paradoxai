@@ -1,14 +1,14 @@
 python -m http.server 5500# Paradox AI — Quantum-Like God AI
 
-**By Ethco Coders** - A sophisticated quantum-inspired AI pipeline implementing a complete perception → knowledge → reasoning → curiosity → self-awareness → output → developer-learning loop.
+**By Ethco Coders mainly by natnael ermiyas** - A sophisticated quantum-inspired AI pipeline implementing a complete perception → knowledge → reasoning → curiosity → self-awareness → output → developer-learning loop.
 
-## 🎯 Project Status: **COMPLETE & OPERATIONAL**
+##  Project Status: **COMPLETE & OPERATIONAL**
 
-✅ **All 13 Tests Pass** | ✅ **API Functional** | ✅ **REPL Working** | ✅ **Full Integration Verified**
+ **All 13 Tests Pass** |  **API Functional** |  **REPL Working** |  **Full Integration Verified**
 
 ---
 
-## 🚀 Quick Start
+##  Quick Start
 
 ### Prerequisites
 ```bash
@@ -40,7 +40,7 @@ curl -X POST http://127.0.0.1:8000/api/query \
 
 ---
 
-## 🏗️ Architecture Overview
+##  Architecture Overview
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
@@ -57,37 +57,37 @@ curl -X POST http://127.0.0.1:8000/api/query \
 
 ### Core Modules
 
-#### 🔍 **Perception** (`modules/perception/`)
+####  **Perception** (`modules/perception/`)
 - **InputEncoder**: Multi-modal encoding (text, images, concepts)
 - **Features**: Vector normalization, superposition initialization
 - **Technology**: NumPy-based with optional Pillow support
 
-#### 🧠 **Knowledge** (`modules/knowledge/`)
+####  **Knowledge** (`modules/knowledge/`)
 - **HyperMatrixStore**: 3D tensor storage (concepts × features × branches)
 - **EntanglementManager**: Quantum-like relationships between concepts
 - **Persistence**: JSON-based storage system
 
-#### 🧮 **Reasoning** (`modules/reasoning/`)
+####  **Reasoning** (`modules/reasoning/`)
 - **PathologicalLogic**: Multi-perspective analysis with contradictory viewpoints
 - **InterferenceEngine**: Quantum-like interference with phases and probabilities
 - **Innovation**: Entanglement-informed probability rebalancing
 
-#### 🤔 **Curiosity** (`modules/curiosity/`)
+####  **Curiosity** (`modules/curiosity/`)
 - **QuestionGenerator**: Shannon entropy-based uncertainty detection
 - **Features**: Internal/external question generation, curiosity state tracking
 - **Metrics**: Uncertainty thresholds, conflict detection, decay mechanisms
 
-#### 🎭 **Self-Awareness** (`modules/self_awareness/`)
+####  **Self-Awareness** (`modules/self_awareness/`)
 - **AIEmotions**: Four-dimensional affective system (Inceptio, Equilibria, Reflexion, Fluxion)
 - **AttentionManager**: Balances curiosity-driven exploration vs correctness-driven consolidation
 - **Adaptation**: Emotion updates from signals and feedback
 
-#### 📤 **Output** (`modules/output/`)
+####  **Output** (`modules/output/`)
 - **ProbabilisticCollapse**: Emotion-aware response generation
 - **Features**: Temperature-based sampling, multi-tone support (friendly/formal/neutral)
 - **Customization**: User-adaptive responses with configurable parameters
 
-#### 📚 **Developer Learning** (`modules/learning_from_developer/`)
+####  **Developer Learning** (`modules/learning_from_developer/`)
 - **DeveloperInputHandler**: Encodes developer feedback
 - **HyperMatrixUpdater**: Applies learning to knowledge base
 - **CuriosityFeedback**: Generates clarification requests
@@ -106,14 +106,14 @@ pytest -q
 ```
 
 ### Test Coverage
-- ✅ **13/13 Tests Pass**
-- ✅ **Unit Tests**: All modules individually tested
-- ✅ **Integration Tests**: End-to-end pipeline verified
-- ✅ **API Tests**: Backend endpoints validated
+-  **50/50 Tests Pass**
+-  **Unit Tests**: All modules individually tested
+-  **Integration Tests**: End-to-end pipeline verified
+-  **API Tests**: Backend endpoints validated
 
 ---
 
-## 📊 Performance Characteristics
+##  Performance Characteristics
 
 - **Startup Time**: ~2 seconds
 - **Query Processing**: ~0.5 seconds per query
@@ -148,19 +148,20 @@ QuantumGodAI/
 │   ├── self_awareness/        # Emotions & attention
 │   ├── output/                # Response generation
 │   ├── learning_from_developer/ # Human feedback
-│   └── utils/                 # Utility functions
+
+── utils/                 # Utility functions
 ├── backend/                   # Flask API server
 ├── ui/                        # Frontend interface
 ├── data/                      # JSON data storage
 ├── tests/                     # Unit tests
-├── main.py                    # Main integration
+├── main_enhanced.py                    # Main integration
 ├── requirements.txt           # Dependencies
 └── ANALYSIS_REPORT.md         # Technical documentation
 ```
 
 ---
 
-## 🎮 Usage Examples
+## Usage Examples
 
 ### REPL Mode
 ```
@@ -184,7 +185,7 @@ curl -X POST http://127.0.0.1:8000/api/developer_input \
 
 ---
 
-## 🔬 Research Applications
+##  Research Applications
 
 - **Quantum-Inspired Computing**: Novel AI architectures
 - **Cognitive Modeling**: Multi-perspective reasoning
@@ -194,7 +195,7 @@ curl -X POST http://127.0.0.1:8000/api/developer_input \
 
 ---
 
-## 📈 Next Steps (Optional Enhancements)
+##  Next Steps (Optional Enhancements)
 
 ### Production Features
 - Database backend (PostgreSQL/MongoDB)
@@ -211,11 +212,11 @@ curl -X POST http://127.0.0.1:8000/api/developer_input \
 
 ---
 
-## 📞 Support
+## Support
 
 This is a research project demonstrating quantum-inspired AI concepts. For questions about the architecture or implementation details, refer to the `ANALYSIS_REPORT.md` and `IMPLEMENTATION_SUMMARY.md` files.
 
-**Status**: ✅ **Fully Operational** | **Ready for Research & Development**
+**Status**:  **Fully Operational** | **Ready for Research & Development**
 **to start the server of ui**
 ```bash
 python -m http.server 5500
