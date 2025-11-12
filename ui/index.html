@@ -1,10 +1,342 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Paradox AI — by Ethco Coders</title>
-	<link rel="stylesheet" href="style.css">
+	<style>
+		/* Base styles & variables */
+		:root {
+			--primary: #6366f1;
+			--primary-dark: #4f46e5;
+			--accent: #8b5cf6;
+			--bg: #0f0f1b;
+			--card-bg: #1a1a2e;
+			--text: #f0f0ff;
+			--text-muted: #a0a0c0;
+			--success: #10b981;
+			--border: #2d2d44;
+			--glow: rgba(99, 102, 241, 0.3);
+		}
+
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		body {
+			font-family: 'Segoe UI', system-ui, sans-serif;
+			background: var(--bg);
+			color: var(--text);
+			line-height: 1.6;
+			min-height: 100vh;
+			background-image: 
+				radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.1) 0%, transparent 20%),
+				radial-gradient(circle at 90% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 20%);
+			overflow-x: hidden;
+		}
+
+		/* Header */
+		header {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding: 1.5rem 2rem;
+			border-bottom: 1px solid var(--border);
+			position: relative;
+			z-index: 10;
+		}
+
+		header::after {
+			content: '';
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			height: 1px;
+			background: linear-gradient(90deg, transparent, var(--primary), transparent);
+			opacity: 0.7;
+		}
+
+		header h1 {
+			font-size: 1.8rem;
+			font-weight: 800;
+			background: linear-gradient(135deg, var(--primary), var(--accent));
+			-webkit-background-clip: text;
+			background-clip: text;
+			color: transparent;
+			letter-spacing: -0.5px;
+		}
+
+		nav {
+			display: flex;
+			gap: 1.25rem;
+		}
+
+		nav a {
+			color: var(--text-muted);
+			text-decoration: none;
+			font-size: 0.95rem;
+			font-weight: 500;
+			transition: all 0.3s ease;
+			padding: 0.35rem 0.6rem;
+			border-radius: 6px;
+		}
+
+		nav a:hover {
+			color: var(--text);
+			background: rgba(99, 102, 241, 0.1);
+		}
+
+		/* Main layout */
+		main {
+			max-width: 1200px;
+			margin: 2rem auto;
+			padding: 0 1.5rem;
+		}
+
+		/* Hero section with 3D cards */
+		.hero {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+			gap: 2rem;
+			margin-bottom: 3rem;
+		}
+
+		.card3d {
+			background: var(--card-bg);
+			border: 1px solid var(--border);
+			border-radius: 16px;
+			padding: 2rem;
+			position: relative;
+			overflow: hidden;
+			transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+						box-shadow 0.4s ease;
+			box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+		}
+
+		.card3d::before {
+			content: '';
+			position: absolute;
+			top: -2px;
+			left: -2px;
+			right: -2px;
+			bottom: -2px;
+			background: linear-gradient(135deg, var(--primary), var(--accent));
+			z-index: -1;
+			border-radius: 18px;
+			opacity: 0;
+			transition: opacity 0.4s ease;
+		}
+
+		.card3d:hover {
+			transform: translateY(-8px) scale(1.02);
+			box-shadow: 0 20px 40px rgba(99, 102, 241, 0.25);
+		}
+
+		.card3d:hover::before {
+			opacity: 1;
+		}
+
+		.card3d h2 {
+			font-size: 1.5rem;
+			margin-bottom: 1rem;
+			color: var(--text);
+		}
+
+		.pill {
+			display: inline-block;
+			background: rgba(99, 102, 241, 0.15);
+			color: var(--primary);
+			padding: 0.35rem 0.85rem;
+			border-radius: 20px;
+			font-size: 0.85rem;
+			font-weight: 600;
+			margin-bottom: 1.25rem;
+			border: 1px solid var(--glow);
+		}
+
+		.card3d a {
+			display: inline-block;
+			background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+			color: white;
+			padding: 0.6rem 1.4rem;
+			border-radius: 8px;
+			text-decoration: none;
+			font-weight: 600;
+			transition: transform 0.2s ease, box-shadow 0.2s ease;
+			box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+		}
+
+		.card3d a:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+		}
+
+		/* Panel sections */
+		.panel {
+			background: var(--card-bg);
+			border: 1px solid var(--border);
+			border-radius: 16px;
+			padding: 2rem;
+			margin-bottom: 2rem;
+			position: relative;
+			overflow: hidden;
+		}
+
+		.panel::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 4px;
+			height: 100%;
+			background: linear-gradient(to bottom, var(--primary), var(--accent));
+		}
+
+		.panel h2 {
+			font-size: 1.4rem;
+			margin-bottom: 1rem;
+			color: var(--text);
+			display: flex;
+			align-items: center;
+			gap: 0.75rem;
+		}
+
+		.panel h2::before {
+			content: '●';
+			color: var(--primary);
+			font-size: 1.2rem;
+		}
+
+		.panel p {
+			color: var(--text-muted);
+			margin-bottom: 0.75rem;
+			line-height: 1.7;
+		}
+
+		.panel a {
+			color: var(--primary);
+			text-decoration: none;
+			font-weight: 600;
+			transition: color 0.2s ease;
+		}
+
+		.panel a:hover {
+			color: var(--accent);
+			text-decoration: underline;
+		}
+
+		/* Blog feed */
+		#blogFeed {
+			min-height: 60px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			color: var(--text-muted);
+			font-style: italic;
+			margin: 1rem 0;
+		}
+
+		/* Refresh button */
+		#refreshPosts {
+			background: rgba(139, 92, 246, 0.15);
+			color: var(--accent);
+			border: 1px solid rgba(139, 92, 246, 0.3);
+			padding: 0.6rem 1.2rem;
+			border-radius: 8px;
+			font-weight: 600;
+			cursor: pointer;
+			transition: all 0.3s ease;
+			margin-top: 0.5rem;
+		}
+
+		#refreshPosts:hover {
+			background: rgba(139, 92, 246, 0.25);
+			transform: translateY(-2px);
+			box-shadow: 0 4px 12px rgba(139, 92, 246, 0.2);
+		}
+
+		/* Footer */
+		footer {
+			text-align: center;
+			padding: 1.5rem;
+			color: var(--text-muted);
+			font-size: 0.9rem;
+			border-top: 1px solid var(--border);
+			margin-top: 2rem;
+		}
+
+		#status {
+			color: var(--success);
+			font-weight: 600;
+		}
+
+		/* Tech-inspired decorative elements */
+		body::before {
+			content: '';
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: 
+				repeating-linear-gradient(0deg, transparent, transparent 49px, rgba(99, 102, 241, 0.03) 50px, rgba(99, 102, 241, 0.03) 51px),
+				repeating-linear-gradient(90deg, transparent, transparent 49px, rgba(139, 92, 246, 0.03) 50px, rgba(139, 92, 246, 0.03) 51px);
+			pointer-events: none;
+			z-index: -1;
+		}
+
+		/* Responsive design */
+		@media (max-width: 768px) {
+			header {
+				flex-direction: column;
+				gap: 1rem;
+				text-align: center;
+			}
+
+			nav {
+				flex-wrap: wrap;
+				justify-content: center;
+			}
+
+			main {
+				margin: 1.5rem auto;
+			}
+
+			.hero {
+				grid-template-columns: 1fr;
+			}
+		}
+
+		/* Animations */
+		@keyframes pulse {
+			0% { opacity: 0.6; }
+			50% { opacity: 1; }
+			100% { opacity: 0.6; }
+		}
+
+		.card3d {
+			animation: fadeInUp 0.6s ease forwards;
+		}
+
+		.card3d:nth-child(2) {
+			animation-delay: 0.2s;
+		}
+
+		@keyframes fadeInUp {
+			from {
+				opacity: 0;
+				transform: translateY(30px);
+			}
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+	</style>
 </head>
 <body>
 	<header>
@@ -51,13 +383,53 @@
 	<footer>
 		<span>Status: <span id="status">Idle</span></span>
 	</footer>
-	<script src="app.js"></script>
 	<script>
-		document.getElementById('refreshPosts').addEventListener('click', window.QGAI.loadPosts);
+		// Mock blog posts functionality
+		const mockPosts = [
+			"Quantum Reasoning: How Paradox Simulates Superposition States",
+			"Developer Preview: Teach Mode Now Available",
+			"Ethco Coders Announces Paradox AI Beta Release",
+			"Understanding Entanglement in AI Decision Making"
+		];
+
+		function loadPosts() {
+			const feed = document.getElementById('blogFeed');
+			const randomCount = Math.floor(Math.random() * 3) + 1;
+			const selectedPosts = [];
+			
+			for (let i = 0; i < randomCount; i++) {
+				const randomIndex = Math.floor(Math.random() * mockPosts.length);
+				if (!selectedPosts.includes(mockPosts[randomIndex])) {
+					selectedPosts.push(mockPosts[randomIndex]);
+				}
+			}
+			
+			if (selectedPosts.length === 0) {
+				feed.innerHTML = '<p style="color:var(--text-muted); font-style:italic;">No posts loaded. Try again.</p>';
+			} else {
+				feed.innerHTML = selectedPosts.map(post => 
+					`<p style="margin:0.5rem 0; padding-left:1.5rem; position:relative;"><span style="position:absolute; left:0; color:var(--primary);">•</span> ${post}</p>`
+				).join('');
+			}
+		}
+
+		// Initialize with some posts
+		loadPosts();
+
+		// Set up event listener
+		document.getElementById('refreshPosts').addEventListener('click', loadPosts);
+
+		// Simulate AI status
+		const statuses = ['Active', 'Processing', 'Learning', 'Idle', 'Ready'];
+		setInterval(() => {
+			const statusElement = document.getElementById('status');
+			const randomStatus = statuses[Math.floor(Math.random() * statuses.length)];
+			statusElement.textContent = randomStatus;
+			statusElement.style.color = randomStatus === 'Idle' ? '#10b981' : 
+									  randomStatus === 'Active' ? '#3b82f6' : 
+									  randomStatus === 'Processing' ? '#f59e0b' : 
+									  randomStatus === 'Learning' ? '#8b5cf6' : '#10b981';
+		}, 5000);
 	</script>
 </body>
-<style>
-</style>
 </html>
-
-
