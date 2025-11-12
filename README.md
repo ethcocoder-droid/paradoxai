@@ -18,7 +18,7 @@ pip install -r requirements.txt
 ### Run Modes
 ```bash
 # Interactive REPL mode
-python main.py --repl
+python main_enhanced.py --repl
 
 # Backend API server (port 8000)
 python backend/app.py
@@ -29,7 +29,8 @@ python main.py --backend --ui
 # Static UI only (port 5500)
 python -m http.server 5500
 ```
-
+#to run the traning session 
+python examples/transformer_demo.py
 ### API Usage
 ```bash
 curl -X POST http://127.0.0.1:8000/api/query \
