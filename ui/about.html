@@ -1,10 +1,263 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>About — Paradox AI</title>
-	<link rel="stylesheet" href="style.css">
+	<style>
+		/* Base styles & variables */
+		:root {
+			--primary: #6366f1;
+			--primary-dark: #4f46e5;
+			--accent: #8b5cf6;
+			--bg: #0a0a16;
+			--card-bg: #131324;
+			--text: #e6e6ff;
+			--text-muted: #a7a7d1;
+			--success: #10b981;
+			--border: #2a2a40;
+			--glow: rgba(99, 102, 241, 0.35);
+		}
+
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		body {
+			font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+			background: var(--bg);
+			color: var(--text);
+			line-height: 1.6;
+			min-height: 100vh;
+			background-image: 
+				radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.08) 0%, transparent 25%),
+				radial-gradient(circle at 90% 80%, rgba(139, 92, 246, 0.08) 0%, transparent 25%),
+				linear-gradient(145deg, rgba(30, 25, 45, 0.7), rgba(15, 10, 30, 0.9));
+			overflow-x: hidden;
+			position: relative;
+		}
+
+		/* Tech grid background */
+		body::before {
+			content: '';
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: 
+				repeating-linear-gradient(0deg, transparent, transparent 49px, rgba(99, 102, 241, 0.02) 50px, rgba(99, 102, 241, 0.02) 51px),
+				repeating-linear-gradient(90deg, transparent, transparent 49px, rgba(139, 92, 246, 0.02) 50px, rgba(139, 92, 246, 0.02) 51px);
+			pointer-events: none;
+			z-index: -1;
+			opacity: 0.7;
+		}
+
+		/* Header */
+		header {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding: 1.5rem 2rem;
+			border-bottom: 1px solid var(--border);
+			position: relative;
+			z-index: 10;
+			background: rgba(16, 16, 32, 0.7);
+			backdrop-filter: blur(10px);
+		}
+
+		header::after {
+			content: '';
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			height: 1px;
+			background: linear-gradient(90deg, transparent, var(--primary), var(--accent), transparent);
+			opacity: 0.8;
+		}
+
+		header h1 {
+			font-size: 1.9rem;
+			font-weight: 800;
+			background: linear-gradient(135deg, var(--primary), var(--accent), #ec4899);
+			-webkit-background-clip: text;
+			background-clip: text;
+			color: transparent;
+			letter-spacing: -0.5px;
+			text-shadow: 0 0 15px rgba(139, 92, 246, 0.3);
+		}
+
+		nav {
+			display: flex;
+			gap: 1.4rem;
+		}
+
+		nav a {
+			color: var(--text-muted);
+			text-decoration: none;
+			font-size: 0.98rem;
+			font-weight: 500;
+			transition: all 0.3s ease;
+			padding: 0.4rem 0.7rem;
+			border-radius: 8px;
+			position: relative;
+			overflow: hidden;
+		}
+
+		nav a::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.2), transparent);
+			transform: translateX(-100%);
+			transition: transform 0.4s ease;
+			z-index: -1;
+		}
+
+		nav a:hover {
+			color: var(--text);
+			background: rgba(99, 102, 241, 0.1);
+		}
+
+		nav a:hover::before {
+			transform: translateX(0);
+		}
+
+		/* Main layout */
+		main {
+			max-width: 1000px;
+			margin: 3rem auto;
+			padding: 0 1.5rem;
+		}
+
+		/* Panel sections */
+		.panel {
+			background: var(--card-bg);
+			border: 1px solid var(--border);
+			border-radius: 20px;
+			padding: 2.5rem;
+			position: relative;
+			overflow: hidden;
+			box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+			transition: transform 0.3s ease, box-shadow 0.3s ease;
+			margin-bottom: 2rem;
+		}
+
+		.panel:hover {
+			transform: translateY(-5px);
+			box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+		}
+
+		.panel::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 5px;
+			height: 100%;
+			background: linear-gradient(to bottom, var(--primary), var(--accent), #ec4899);
+			box-shadow: 0 0 15px var(--glow);
+		}
+
+		.panel > * {
+			position: relative;
+			z-index: 1;
+		}
+
+		.panel h2 {
+			font-size: 1.8rem;
+			margin-bottom: 1.5rem;
+			color: var(--text);
+			display: flex;
+			align-items: center;
+			gap: 0.9rem;
+			padding-bottom: 0.8rem;
+			border-bottom: 1px solid var(--border);
+		}
+
+		.panel h2::before {
+			content: '◉';
+			color: var(--primary);
+			font-size: 1.4rem;
+			text-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
+		}
+
+		.panel p {
+			color: var(--text-muted);
+			font-size: 1.1rem;
+			line-height: 1.8;
+			margin-bottom: 1.2rem;
+		}
+
+		code {
+			background: rgba(30, 30, 46, 0.7);
+			border: 1px solid var(--border);
+			border-radius: 6px;
+			padding: 0.2rem 0.6rem;
+			color: var(--accent);
+			font-family: 'Consolas', monospace;
+			font-size: 0.95rem;
+		}
+
+		/* Footer */
+		footer {
+			text-align: center;
+			padding: 1.8rem;
+			color: var(--text-muted);
+			font-size: 1rem;
+			border-top: 1px solid var(--border);
+			margin-top: 2rem;
+			background: rgba(16, 16, 32, 0.6);
+			backdrop-filter: blur(5px);
+		}
+
+		#status {
+			color: var(--success);
+			font-weight: 700;
+			padding: 0.3rem 0.8rem;
+			border-radius: 8px;
+			background: rgba(16, 185, 129, 0.15);
+			border: 1px solid rgba(16, 185, 129, 0.3);
+			display: inline-block;
+		}
+
+		/* Responsive design */
+		@media (max-width: 768px) {
+			header {
+				flex-direction: column;
+				gap: 1.2rem;
+				text-align: center;
+			}
+			
+			nav {
+				flex-wrap: wrap;
+				justify-content: center;
+			}
+			
+			main {
+				margin: 1.8rem auto;
+			}
+			
+			.panel {
+				padding: 1.8rem;
+			}
+			
+			header h1 {
+				font-size: 1.7rem;
+			}
+			
+			.panel h2 {
+				font-size: 1.5rem;
+			}
+		}
+	</style>
 </head>
 <body>
 	<header>
@@ -24,7 +277,19 @@
 	<footer>
 		<span>Status: <span id="status">Idle</span></span>
 	</footer>
+	<script>
+		// Simulate status updates
+		const statuses = ['Active', 'Processing', 'Learning', 'Idle', 'Ready'];
+		setInterval(() => {
+			const statusElement = document.getElementById('status');
+			const randomStatus = statuses[Math.floor(Math.random() * statuses.length)];
+			statusElement.textContent = randomStatus;
+			statusElement.style.color = randomStatus === 'Idle' ? '#10b981' : 
+									  randomStatus === 'Active' ? '#3b82f6' : 
+									  randomStatus === 'Processing' ? '#f59e0b' : 
+									  randomStatus === 'Learning' ? '#8b5cf6' : '#10b981';
+		}, 5000);
+	</script>
 </body>
 </html>
-
-
+```
