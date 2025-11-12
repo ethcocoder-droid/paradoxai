@@ -1,10 +1,425 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Developer Dashboard — Paradox AI (Ethco Coders)</title>
-	<link rel="stylesheet" href="style.css">
+	<style>
+		/* Base styles & variables */
+		:root {
+			--primary: #6366f1;
+			--primary-dark: #4f46e5;
+			--accent: #8b5cf6;
+			--bg: #0a0a16;
+			--card-bg: #131324;
+			--text: #e6e6ff;
+			--text-muted: #a7a7d1;
+			--success: #10b981;
+			--border: #2a2a40;
+			--glow: rgba(99, 102, 241, 0.35);
+			--warning: #f59e0b;
+			--panel-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+			--card-hover-shadow: 0 15px 35px rgba(99, 102, 241, 0.35);
+		}
+
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		body {
+			font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+			background: var(--bg);
+			color: var(--text);
+			line-height: 1.6;
+			min-height: 100vh;
+			background-image: 
+				radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.08) 0%, transparent 25%),
+				radial-gradient(circle at 90% 80%, rgba(139, 92, 246, 0.08) 0%, transparent 25%),
+				linear-gradient(145deg, rgba(30, 25, 45, 0.7), rgba(15, 10, 30, 0.9));
+			overflow-x: hidden;
+			position: relative;
+		}
+
+		/* Tech grid background */
+		body::before {
+			content: '';
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: 
+				repeating-linear-gradient(0deg, transparent, transparent 49px, rgba(99, 102, 241, 0.02) 50px, rgba(99, 102, 241, 0.02) 51px),
+				repeating-linear-gradient(90deg, transparent, transparent 49px, rgba(139, 92, 246, 0.02) 50px, rgba(139, 92, 246, 0.02) 51px);
+			pointer-events: none;
+			z-index: -1;
+			opacity: 0.7;
+		}
+
+		/* Header */
+		header {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding: 1.5rem 2rem;
+			border-bottom: 1px solid var(--border);
+			position: relative;
+			z-index: 10;
+			background: rgba(16, 16, 32, 0.7);
+			backdrop-filter: blur(10px);
+		}
+
+		header::after {
+			content: '';
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			height: 1px;
+			background: linear-gradient(90deg, transparent, var(--primary), var(--accent), transparent);
+			opacity: 0.8;
+		}
+
+		header h1 {
+			font-size: 1.9rem;
+			font-weight: 800;
+			background: linear-gradient(135deg, var(--primary), var(--accent), #ec4899);
+			-webkit-background-clip: text;
+			background-clip: text;
+			color: transparent;
+			letter-spacing: -0.5px;
+			text-shadow: 0 0 15px rgba(139, 92, 246, 0.3);
+			position: relative;
+		}
+
+		nav {
+			display: flex;
+			gap: 1.4rem;
+		}
+
+		nav a {
+			color: var(--text-muted);
+			text-decoration: none;
+			font-size: 0.98rem;
+			font-weight: 500;
+			transition: all 0.3s ease;
+			padding: 0.4rem 0.7rem;
+			border-radius: 8px;
+			position: relative;
+			overflow: hidden;
+		}
+
+		nav a::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.2), transparent);
+			transform: translateX(-100%);
+			transition: transform 0.4s ease;
+			z-index: -1;
+		}
+
+		nav a:hover {
+			color: var(--text);
+			background: rgba(99, 102, 241, 0.1);
+		}
+
+		nav a:hover::before {
+			transform: translateX(0);
+		}
+
+		/* Main layout */
+		main {
+			max-width: 1400px;
+			margin: 2.5rem auto;
+			padding: 0 1.5rem;
+			display: grid;
+			gap: 1.8rem;
+		}
+
+		/* Panel sections */
+		.panel {
+			background: var(--card-bg);
+			border: 1px solid var(--border);
+			border-radius: 20px;
+			padding: 2rem;
+			position: relative;
+			overflow: hidden;
+			box-shadow: var(--panel-shadow);
+			transition: transform 0.3s ease, box-shadow 0.3s ease;
+		}
+
+		.panel:hover {
+			transform: translateY(-5px);
+			box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+		}
+
+		.panel::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 5px;
+			height: 100%;
+			background: linear-gradient(to bottom, var(--primary), var(--accent), #ec4899);
+			box-shadow: 0 0 15px var(--glow);
+		}
+
+		.panel h2 {
+			font-size: 1.5rem;
+			margin-bottom: 1.5rem;
+			color: var(--text);
+			display: flex;
+			align-items: center;
+			gap: 0.8rem;
+			padding-bottom: 0.7rem;
+			border-bottom: 1px solid var(--border);
+		}
+
+		.panel h2::before {
+			content: '◉';
+			color: var(--primary);
+			font-size: 1.3rem;
+			text-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
+		}
+
+		/* Controls layout */
+		.controls {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 1.2rem;
+			align-items: center;
+			margin: 1.2rem 0;
+		}
+
+		.controls label {
+			display: flex;
+			flex-direction: column;
+			gap: 0.5rem;
+			font-size: 0.95rem;
+			color: var(--text-muted);
+			font-weight: 500;
+		}
+
+		.controls input:not([type="checkbox"]), 
+		.controls select {
+			background: rgba(25, 25, 45, 0.85);
+			border: 1px solid var(--border);
+			border-radius: 12px;
+			padding: 0.8rem 1.2rem;
+			color: var(--text);
+			font-size: 1rem;
+			min-width: 200px;
+		}
+
+		.controls input:focus, 
+		.controls select:focus {
+			outline: none;
+			border-color: var(--primary);
+			box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+		}
+
+		/* Buttons */
+		button {
+			background: linear-gradient(135deg, var(--primary), var(--accent));
+			color: white;
+			padding: 0.8rem 1.8rem;
+			border: none;
+			border-radius: 12px;
+			font-weight: 600;
+			font-size: 1rem;
+			cursor: pointer;
+			transition: all 0.3s ease;
+			box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+			position: relative;
+			overflow: hidden;
+		}
+
+		button::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: -100%;
+			width: 100%;
+			height: 100%;
+			background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+			transition: left 0.7s ease;
+		}
+
+		button:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 8px 25px rgba(99, 102, 241, 0.55);
+		}
+
+		button:hover::before {
+			left: 100%;
+		}
+
+		button:active {
+			transform: translateY(1px);
+		}
+
+		/* Special buttons */
+		#logoutBtn {
+			background: linear-gradient(135deg, #ef4444, #f97316);
+			box-shadow: 0 6px 20px rgba(239, 68, 68, 0.3);
+		}
+
+		#saveSettings {
+			background: linear-gradient(135deg, #10b981, #0ea5e9);
+		}
+
+		/* Pill badge */
+		.pill {
+			display: inline-block;
+			background: rgba(99, 102, 241, 0.18);
+			color: var(--primary);
+			padding: 0.4rem 1rem;
+			border-radius: 20px;
+			font-size: 0.95rem;
+			font-weight: 600;
+			border: 1px solid var(--glow);
+			margin-left: 0.5rem;
+		}
+
+		/* Preformatted text areas */
+		pre {
+			background: rgba(20, 20, 38, 0.85);
+			border: 1px solid var(--border);
+			border-radius: 16px;
+			padding: 1.5rem;
+			color: #e0e0ff;
+			font-size: 0.95rem;
+			min-height: 120px;
+			white-space: pre-wrap;
+			overflow: auto;
+			max-height: 300px;
+			font-family: 'Consolas', 'Courier New', monospace;
+			line-height: 1.7;
+			box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.3);
+			margin: 1rem 0;
+		}
+
+		/* Textarea */
+		textarea {
+			width: 100%;
+			background: rgba(25, 25, 45, 0.8);
+			border: 1px solid var(--border);
+			border-radius: 16px;
+			padding: 1.2rem;
+			color: var(--text);
+			font-size: 1rem;
+			resize: vertical;
+			min-height: 150px;
+			margin: 1rem 0;
+			font-family: 'Segoe UI', monospace;
+			line-height: 1.7;
+		}
+
+		textarea:focus {
+			outline: none;
+			border-color: var(--primary);
+			box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25);
+			background: rgba(30, 30, 55, 0.9);
+		}
+
+		/* File input */
+		input[type="file"] {
+			background: rgba(25, 25, 45, 0.85);
+			border: 1px solid var(--border);
+			border-radius: 12px;
+			padding: 0.8rem;
+			color: var(--text);
+			width: 100%;
+			margin: 0.8rem 0;
+		}
+
+		/* Footer */
+		footer {
+			text-align: center;
+			padding: 1.8rem;
+			color: var(--text-muted);
+			font-size: 1rem;
+			border-top: 1px solid var(--border);
+			margin-top: 2rem;
+			background: rgba(16, 16, 32, 0.6);
+			backdrop-filter: blur(5px);
+		}
+
+		#status {
+			color: var(--success);
+			font-weight: 700;
+			padding: 0.3rem 0.8rem;
+			border-radius: 8px;
+			background: rgba(16, 185, 129, 0.15);
+			border: 1px solid rgba(16, 185, 129, 0.3);
+			display: inline-block;
+		}
+
+		/* Responsive design */
+		@media (max-width: 900px) {
+			.controls {
+				flex-direction: column;
+				align-items: stretch;
+				gap: 1rem;
+			}
+			
+			.controls label {
+				width: 100%;
+			}
+			
+			.controls input:not([type="checkbox"]) {
+				width: 100%;
+				min-width: auto;
+			}
+		}
+
+		@media (max-width: 768px) {
+			header {
+				flex-direction: column;
+				gap: 1.2rem;
+				text-align: center;
+			}
+			
+			nav {
+				flex-wrap: wrap;
+				justify-content: center;
+			}
+			
+			main {
+				margin: 1.5rem auto;
+			}
+			
+			.panel {
+				padding: 1.5rem;
+			}
+			
+			header h1 {
+				font-size: 1.7rem;
+			}
+			
+			.controls {
+				flex-direction: column;
+			}
+		}
+
+		/* Animations */
+		@keyframes pulse {
+			0% { opacity: 0.7; transform: scale(0.98); }
+			50% { opacity: 1; transform: scale(1); }
+			100% { opacity: 0.7; transform: scale(0.98); }
+		}
+
+		.loading {
+			animation: pulse 1.8s infinite;
+		}
+	</style>
 </head>
 <body>
 	<header>
@@ -109,5 +524,3 @@
 	<script src="dashboard.js"></script>
 </body>
 </html>
-
-
